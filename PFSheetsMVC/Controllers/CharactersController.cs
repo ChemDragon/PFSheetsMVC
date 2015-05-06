@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using PFSheetsMVC.DAL;
 using PFSheetsMVC.Models;
 
@@ -51,6 +52,7 @@ namespace PFSheetsMVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                character.UserID = User.Identity.GetUserId();
                 db.Characters.Add(character);
                 db.SaveChanges();
                 return RedirectToAction("Index");
